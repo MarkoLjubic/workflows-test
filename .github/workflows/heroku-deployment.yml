@@ -1,4 +1,4 @@
-name: "heroku-deployment"
+name: Heroku deployment
 
 on: [workflow_dispatch]
 
