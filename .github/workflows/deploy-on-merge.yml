@@ -1,0 +1,15 @@
+name: Deploy on merge
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: "Deploy mono to dev2"
+    needs: set_vars
+    uses: MarkoLjubic/workflows-test/.github/workflows/reusable-deployment.yml@main
+    secrets: inherit
