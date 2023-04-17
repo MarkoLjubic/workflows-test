@@ -6,19 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
           node-version: 16
+
       - name: Build and test
-        run: yarn install && yarn build && yarn test
-      - name: Check test results
-        run: |
-          # Check if the test results contain any failures
-          if grep -q "FAIL" coverage/lcov-report/index.html; then
-            echo "Tests failed. Please fix the failing tests before merging."
-            exit 1
-          else
-            echo "Tests passed."
-          fi
+        run: npm install && npm run build && npm run test
