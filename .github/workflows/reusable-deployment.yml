@@ -1,0 +1,20 @@
+name: "~reusable-deployment"
+
+on:
+  workflow_call:
+    secrets:
+      HEROKU_API_KEY:
+        required: true
+
+jobs:
+  heroku_deployment:
+    name: "Heroku Deployment"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: workflows_test
+          heroku_email: markoljubic993@gmail.com
+          buildpack: heroku/nodejs
